@@ -12,7 +12,7 @@ docker compose up -d --build
 - API: http://localhost:3000/api/ordenes
 - Swagger UI: http://localhost:3000/api/docs (JSON en `/api/docs-json`)
 
-MySQL ejecuta `database/init.sql` **solo en el primer arranque** (volumen vacío). Para recrear la base: `docker compose down -v && docker compose up -d --build`.
+MySQL queda expuesto en el host en el puerto **3307** (`DB_HOST_PORT`) para no chocar con un MySQL local. MySQL ejecuta `database/init.sql` **solo en el primer arranque** (volumen vacío). Para recrear la base: `docker compose down -v && docker compose up -d --build`.
 
 ## Ejecución local (sin Docker para la API)
 

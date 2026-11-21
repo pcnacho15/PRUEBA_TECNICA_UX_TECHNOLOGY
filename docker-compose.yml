@@ -12,7 +12,8 @@ services:
       TZ: UTC
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - '${DB_PORT:-3306}:3306'
+      # 3307 en el host para no chocar con un MySQL local en 3306.
+      - '${DB_HOST_PORT:-3307}:3306'
     volumes:
       - db_data:/var/lib/mysql
       # Se ejecuta solo cuando el volumen está vacío (primer arranque).
