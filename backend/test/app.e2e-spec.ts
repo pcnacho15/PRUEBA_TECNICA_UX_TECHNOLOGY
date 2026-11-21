@@ -68,6 +68,20 @@ describe('Órdenes API (e2e)', () => {
       .expect(400);
   });
 
+  it('GET /api/ordenes/catalogos devuelve las listas desplegables (no la trata como :id)', async () => {
+    const res = await request(app.getHttpServer())
+      .get('/api/ordenes/catalogos')
+      .expect(200);
+
+    expect(res.body).toEqual({
+      estados: ['Pendiente', 'En Proceso', 'Completada', 'Cancelada'],
+      prioridades: ['Baja', 'Media', 'Alta', 'Crítica'],
+      estadoPorDefecto: 'Pendiente',
+      prioridadPorDefecto: 'Media',
+    });
+    expect(repository.findActiveById).not.toHaveBeenCalled();
+  });
+
   it('GET /api/ordenes/:id responde 400 si el id no es entero', () => {
     return request(app.getHttpServer()).get('/api/ordenes/abc').expect(400);
   });

@@ -2,7 +2,7 @@
 
 CRUD REST sobre la tabla única `ordenes_servicio`, construido con **NestJS 12 + TypeScript (strict) + TypeORM + MySQL 8**, documentado con **Swagger** y dockerizado.
 
-> Para levantar todo el proyecto con Docker, ver el [README de la raíz](../README.md).
+> Documentación completa (instalación paso a paso, variables de entorno, respuestas de cada endpoint y arquitectura detallada): [README de la raíz](../README.md).
 
 - API: http://localhost:3000/api/ordenes
 - Swagger UI: http://localhost:3000/api/docs (JSON en `/api/docs-json`)
@@ -24,6 +24,7 @@ npm run start:dev
 | Método | Ruta | Descripción | Respuestas |
 | --- | --- | --- | --- |
 | GET | `/api/ordenes?page=1&limit=10&cliente=&estado=` | Listado paginado; `cliente` es coincidencia parcial, `estado` es exacto | 200, 400 |
+| GET | `/api/ordenes/catalogos` | Valores de las listas de estado y prioridad (y sus valores por defecto) para los `<select>` | 200 |
 | GET | `/api/ordenes/:id` | Detalle de una orden activa | 200, 400, 404 |
 | POST | `/api/ordenes` | Crear | 201, 400, 409 |
 | PUT | `/api/ordenes/:id` | Actualizar (se validan y aplican los campos enviados) | 200, 400, 404, 409 |

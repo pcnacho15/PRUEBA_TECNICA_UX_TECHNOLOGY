@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { buildPaginationMeta } from '../common/interfaces/paginated-result.interface.js';
 import type { PaginatedResult } from '../common/interfaces/paginated-result.interface.js';
+import { CatalogosOrdenResponseDto } from './dto/catalogos-orden-response.dto.js';
 import type { CreateOrdenDto } from './dto/create-orden.dto.js';
 import type { FilterOrdenesDto } from './dto/filter-ordenes.dto.js';
 import { OrdenResponseDto } from './dto/orden-response.dto.js';
@@ -38,6 +39,10 @@ export class OrdenesService {
       data: ordenes.map((orden) => OrdenResponseDto.fromEntity(orden)),
       meta: buildPaginationMeta(total, page, limit),
     };
+  }
+
+  getCatalogos(): CatalogosOrdenResponseDto {
+    return CatalogosOrdenResponseDto.create();
   }
 
   async findOne(id: number): Promise<OrdenResponseDto> {

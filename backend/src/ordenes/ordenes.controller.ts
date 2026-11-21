@@ -23,6 +23,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import type { PaginatedResult } from '../common/interfaces/paginated-result.interface.js';
+import { CatalogosOrdenResponseDto } from './dto/catalogos-orden-response.dto.js';
 import { CreateOrdenDto } from './dto/create-orden.dto.js';
 import { FilterOrdenesDto } from './dto/filter-ordenes.dto.js';
 import {
@@ -49,6 +50,14 @@ export class OrdenesController {
     @Query() filters: FilterOrdenesDto,
   ): Promise<PaginatedResult<OrdenResponseDto>> {
     return this.ordenesService.findAll(filters);
+  }
+
+  /** Declarado antes de ':id' para que la ruta no la capture ParseIntPipe. */
+  @Get('catalogos')
+  @ApiOperation({ summary: 'Valores de las listas de estado y prioridad' })
+  @ApiOkResponse({ type: CatalogosOrdenResponseDto })
+  getCatalogos(): CatalogosOrdenResponseDto {
+    return this.ordenesService.getCatalogos();
   }
 
   @Get(':id')
