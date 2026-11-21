@@ -6,6 +6,5 @@ test
 .env
 .env.*
 *.log
+*.tsbuildinfo
 Dockerfile
-docker-compose.yml
-database
