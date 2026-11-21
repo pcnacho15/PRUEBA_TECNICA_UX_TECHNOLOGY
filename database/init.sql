@@ -4,6 +4,9 @@
 -- Docker ejecuta este script automáticamente al crear el volumen por primera vez.
 -- =============================================================================
 
+-- El cliente mysql del contenedor lee el archivo como latin1 si no se indica.
+SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE DATABASE IF NOT EXISTS ux_prueba_tecnica CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE ux_prueba_tecnica;
